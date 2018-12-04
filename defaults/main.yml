@@ -126,3 +126,10 @@ mysql_replication_role: ''
 mysql_replication_master: ''
 # Same keys as `mysql_users` above.
 mysql_replication_user: []
+
+# mariadb galera cluster
+galera_cluster: false
+galera_master: "master_ip"
+galera_slaves: []
+
+
