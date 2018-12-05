@@ -129,7 +129,5 @@ mysql_replication_user: []
 
 # mariadb galera cluster
 galera_cluster: false
-galera_master: "master_ip"
-galera_slaves: []
-
-
+galera_master: false
+galera_slave: false
