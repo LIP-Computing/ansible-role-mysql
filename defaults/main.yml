@@ -129,5 +129,8 @@ mysql_replication_user: []
 
 # mariadb galera cluster
 galera_cluster: false
-galera_master: false
-galera_slave: false
+galera_master: "galera01"
+galera_wsrep_cluster_name: "gcluster"
+galera_nodes: []
+galera_hostname: "{{ inventory_hostname }}"
+galera_ip_address: "{{ ansible_default_ipv4 }}"
