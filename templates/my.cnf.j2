@@ -118,7 +118,7 @@ innodb_lock_wait_timeout = {{ mysql_innodb_lock_wait_timeout }}
 # Mandatory settings
 wsrep_on=ON
 wsrep_provider=/usr/lib64/galera/libgalera_smm.so
-wsrep_cluster_address = "gcomm://{{ galera_nodes|join(',') }}"
+wsrep_cluster_address = "gcomm://{{ galera_nodes| map('extract', hostvars, ['ansible_default_ipv4','address']) | join(',') }}"
 wsrep_cluster_name={{ galera_wsrep_cluster_name }}
 wsrep_node_name={{ galera_hostname }}
 wsrep_node_address={{ galera_ip_address }}
