@@ -1,7 +1,4 @@
 ---
-- name: Stop mariadb on first mariadb Galera cluster node
-  service: name=mariadb state=stopped
-
 - name: Bootstrap first MariaDB Galera cluster node
   command: galera_new_cluster
 
