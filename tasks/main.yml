@@ -20,5 +20,10 @@
 
 # Configure MySQL single node or galera first node.
 - include_tasks: deploy.yml
-  when: (not galera_cluster) or galera_master
 
+- include_tasks: cluster-bootstrap.yml
+  when: galera_cluster and (inventory_hostname == galera_master)
+
+- name: Restart the other MariaDB Galera cluster nodes
+  service: name=mariadb state=restarted
+  when: galera_cluster and (inventory_hostname != galera_master)
