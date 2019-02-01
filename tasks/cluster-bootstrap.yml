@@ -2,5 +2,8 @@
 - name: Bootstrap first MariaDB Galera cluster node
   command: galera_new_cluster
 
-- name: Restart the other MariaDB Galera cluster nodes
-  service: name=mariadb state=restarted
+- name: Make new cluster
+  command: mysqld_safe --wsrep-new-cluster
+
+- name: Restart first MariaDB Galera cluster node
+  service: name=mariadb state=started

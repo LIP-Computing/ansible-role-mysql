@@ -23,7 +23,7 @@
 
 - name: Stop mariadb on first mariadb Galera cluster node
   service: name=mariadb state=stopped
-  when: galera_cluster
+  when: galera_cluster and (inventory_hostname == galera_master)
 
 - include_tasks: cluster-bootstrap.yml
   when: galera_cluster and (inventory_hostname == galera_master)
