@@ -19,7 +19,7 @@
       or (arch_mysql_install_packages is defined and arch_mysql_install_packages.changed) }}"
 
 # Configure MySQL single node or galera first node.
-- include_tasks: deploy.yml
+- include_tasks: configure.yml
 
 - name: Stop mariadb on first mariadb Galera cluster node
   service: name=mariadb state=stopped
@@ -28,6 +28,9 @@
 - include_tasks: cluster-bootstrap.yml
   when: galera_cluster and (inventory_hostname == galera_master)
 
+- include_tasks: deploy-cluster.yml
+  when: galera_cluster and (inventory_hostname == galera_master)
+
 - name: Restart the other MariaDB Galera cluster nodes
-  service: name=mariadb state=restarted
+  service: "name={{ mysql_daemon }} state=started enabled={{ mysql_enabled_on_startup }}"
   when: galera_cluster and (inventory_hostname != galera_master)
